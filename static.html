@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bomb Risk Elicitation Task</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/bret.css" rel="stylesheet"/>
+        <style type="text/css">
+        	.ng-cloak{display: none !important;}
+        </style>
+    </head>
+    <body>
+    	<div 
+    		id="bomb-task"
+    		class="ng-cloak"
+    		data-ng-app="bombTask"
+    		data-ng-controller="BombTaskController as bombTaskController">
+    		<h3 class="text-center">
+                Bomb Risk Elicitation Task<br>
+                <small>Variant: Static Toggleable</small>
+            </h3>
+    		<div data-ng-include="'./views/matrix.html'"></div>
+		    <!-- 
+		    <input type="hidden" name="bomb" id="bomb" data-ng-value="bombTaskController.form.bomb"/>
+            <input type="hidden" name="boxes_scheme" id="boxes_scheme" data-ng-value="bombTaskController.form.boxes_scheme"/>
+            <input type="hidden" name="boxes_collected" id="boxes_collected" data-ng-value="bombTaskController.form.boxes_collected"/>
+            <input type="hidden" name="bomb_location" id="bomb_location" value="" data-ng-value="bombTaskController.form.bomb_location"/>
+	        -->
+    	</div>
+    	
+    	<script src="js/angular.min.js"></script>
+    	<script src="js/bombTask.js"></script>
+    	<script>(function(angular){
+	        try{
+	            angular
+	                .module('bombTask')
+	                .constant('NUM_ROWS',5)
+	                .constant('NUM_COLS',5)
+	                //.constant('RANDOM',true)
+	                //.constant('DYNAMIC',true)
+	                //.constant('INTERVAL',.5)
+	                //.constant('WIDTH','75px')
+	                //.constant('HEIGHT','75px')
+	                //.constant('UNDOABLE',false)
+	                //.constant('FEEDBACK',false);
+	        } catch(e){ console.error('Could not pass settings to bomb task app!');}
+	    })(angular);
+	    </script>
+    	
+    </body>
+</html>

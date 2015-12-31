@@ -1,0 +1,88 @@
+<div class="matrix">
+	
+	<div 
+		class="row"
+		data-ng-repeat="(row,columns) in bombTaskController.matrix">
+		<div 
+			class="col"
+			data-ng-repeat="(col,column) in columns">
+			<div
+				class="holder"
+				data-card="column"
+				data-card-is-clickable="!bombTaskController.dynamic"
+				data-card-is-active="column.$$active"
+				data-card-on-toggle="bombTaskController.update(column,state)"
+				data-ng-class="{
+					'resolved':bombTaskController.resolved && column.$$resolved,
+					'bomb':bombTaskController.resolved && bombTaskController.isBomb(column)
+				}"
+				data-ng-style="{
+					'width':bombTaskController.width,
+					'height':bombTaskController.height
+				}"
+				data-card-is-disabled="(!bombTaskController.undoable && column.$$active) || !bombTaskController.started || bombTaskController.stopped">
+
+				<span 
+					class="front"
+					data-ng-style="{
+    					'width':bombTaskController.width,
+    					'height':bombTaskController.height
+    				}">
+					<span class="icon glyphicon glyphicon-ok"></span>
+				</span>
+				<span 
+					class="back"
+					data-ng-style="{
+    					'width':bombTaskController.width,
+    					'height':bombTaskController.height
+    				}">
+					<span class="icon glyphicon glyphicon-usd"></span>
+					<span class="icon glyphicon glyphicon-fire"></span>
+				</span>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="counter">
+		<strong>Collected Cards:</strong> {{ bombTaskController.getCollectedBoxes() }}
+		<br>
+		<strong>Remaining Cards:</strong> {{ bombTaskController.getRemainingBoxes() }}
+	</div>
+
+	<div class="buttons">
+
+		<button
+			href="javascript:void(0)"
+    		class="btn btn-success btn-md start"
+    		data-ng-click="bombTaskController.start()"
+    		data-ng-disabled="bombTaskController.started">
+    		<span>Start</span>
+    	</button>
+
+    	<button
+			href="javascript:void(0)"
+    		class="btn btn-danger btn-md stop"
+    		data-ng-click="bombTaskController.stop()"
+    		data-ng-disabled="!bombTaskController.started || bombTaskController.stopped">
+    		<span>Stop</span>
+    	</button>
+
+    	<button 
+    		href="javascript:void(0)"
+    		class="btn btn-primary btn-md resolve"
+    		data-ng-if="bombTaskController.feedback"
+    		data-ng-click="bombTaskController.resolve()"
+    		data-ng-disabled="!bombTaskController.stopped">
+    		<span>Resolve</span>
+    	</button>
+
+    	<button 
+    		href="javascript:void(0)"
+    		class="btn btn-default btn-md reset"
+    		data-ng-click="bombTaskController.reset()">
+    		<span>Reset</span>
+    	</button>
+
+    </div>
+</div>
