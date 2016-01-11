@@ -13,7 +13,7 @@
 	// check if angular core is availble
 	if( typeof angular === 'undefined' )
 	{
-		throw Exception('Cannot initialize bomb task without angular!');
+		throw Error('Cannot initialize bomb task without angular!');
 		return;
 	}
 
